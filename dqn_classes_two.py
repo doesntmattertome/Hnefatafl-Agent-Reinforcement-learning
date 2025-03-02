@@ -13,7 +13,7 @@ from gym import spaces
 import pickle
 from game import Board
 
-
+#dqn classes
 
 class HnefataflEnv(gym.Env):
     def __init__(self):
