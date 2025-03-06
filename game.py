@@ -57,6 +57,7 @@ class Board:
             column_index += 1
             row_index = 0
             print()
+            
     def mask_directions(self, position, directions):
         # mask the directions that are not possible to move in
         masked_directions = []
@@ -64,6 +65,7 @@ class Board:
             if (0 <= position[0] + dx < 11 and 0 <= position[1] + dy < 11):
                 masked_directions.append((dx, dy))
         return masked_directions
+    
     # check if a player has won, if black return 1, if white return -1, if no one return 0
     def check_winner(self):
         # if no black pieces are on the board, white wins
@@ -82,20 +84,9 @@ class Board:
             #print("black wins")
             #self.print_board()
             return 1
-        """
-        # check if the king is surrounded by black pieces or the edge of the board
-        directions = [(0,1), (0,-1), (1,0), (-1,0)]
-        surrounded = True
-        for dx, dy in directions:
-            nx, ny = kx + dx, ky + dy
-            if not (0 <= nx < 11 and 0 <= ny < 11 and self.board[nx, ny] in [1, 2]):
-                surrounded = False
-                break
-        if surrounded:
-            if not (np.argwhere(self.board == -1).size):
-                return 1
-        """
+        # if this isn't a "winning" state, return 0
         return 0
+    
     def how_much_king_surrounded(self):
       directions = [(0,1), (0,-1), (1,0), (-1,0)]
       king_pos = np.argwhere(self.board == -2)

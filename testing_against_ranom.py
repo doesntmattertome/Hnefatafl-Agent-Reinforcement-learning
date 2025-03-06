@@ -247,10 +247,9 @@ class DQNAgent:
 env = HnefataflEnv()
 state_size = (11, 11)
 action_size = 11 * 11 * 11 * 11
-load_prev = input("load previous run? (y/n): ")
 
 black_agent = DQNAgent(state_size, action_size, 1)
-black_agent.load_model('black_model.keras')
+black_agent.load_weights("black_model.weights.h5")
 white_agent = DQNAgent(state_size, action_size, -1)
 
 batch_size = 256

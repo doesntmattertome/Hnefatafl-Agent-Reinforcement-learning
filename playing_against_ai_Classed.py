@@ -51,14 +51,14 @@ class HnefataflGUI:
         state_size = (11, 11)
         action_size = 11 * 11 * 11 * 11
         self.dqn_agent_black = DQNAgent(state_size, action_size, player=1)
-        self.dqn_agent_black.load_weights("testingit.weights.h5")
-        self.dqn_agent_black.print_weights()
-        self.dqn_agent_black.model_summary()
+        self.dqn_agent_black.load_weights("black_model.weights.h5")
+        # self.dqn_agent_black.print_weights()
+        # self.dqn_agent_black.model_summary()
 
         self.dqn_agent_white = DQNAgent(state_size, action_size, player=1)
-        self.dqn_agent_white.load_weights("white_weights_1400_v3.weights.h5")
-        self.dqn_agent_white.print_weights()
-        self.dqn_agent_white.model_summary()
+        self.dqn_agent_white.load_weights("white_model.weights.h5")
+        # self.dqn_agent_white.print_weights()
+        # self.dqn_agent_white.model_summary()
 
         # Game state variables
         self.selected_piece = None
