@@ -14,7 +14,7 @@ class HnefataflGUI:
     def __init__(self):
         # Initialize Pygame and constants
         pygame.init()
-        self.WINDOW_SIZE = 700
+        self.WINDOW_SIZE = 600
         self.GRID_SIZE = 11
         self.CELL_SIZE = self.WINDOW_SIZE // self.GRID_SIZE
         self.FPS = 60
