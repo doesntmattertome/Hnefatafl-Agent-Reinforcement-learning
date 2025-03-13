@@ -100,6 +100,15 @@ class Board:
                 amount_surrounded -= 1
         return amount_surrounded
     
+    def king_on_edges(self):
+      king_pos = np.argwhere(self.board == -2)
+      if king_pos.size:
+        edges = [0,10]
+        kx, ky = king_pos[0]
+        if kx in edges or ky in edges:
+          return True
+        return False
+    
     def capture_enemies(self, player, end):
         # the king can't capture, if king don't capture return -1
         if (self.board[end[0], end[1]] == -2):

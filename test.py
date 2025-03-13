@@ -158,16 +158,7 @@ class DQNAgent:
 
     def act(self, state, valid_moves, exploit=False):
         """Choose an action, masking invalid moves."""
-        # check if one of the valid moves is a winning position: (10,0), (0,10), (10,10), (0,0)
-        # if so return that position
-        #for i, valid in enumerate(valid_moves):
-         #   if valid:
-                
-          #      end_x = (i % (11 * 11)) // 11
-          #      end_y = i % 11
-             #   if (end_x, end_y) in [(10, 0), (0, 10), (10, 10), (0, 0)]:
-             #       return i
-        #self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
+    
         if random.random() <= self.epsilon and not exploit:
             valid_indices = [i for i, valid in enumerate(valid_moves) if valid]
             
@@ -231,64 +222,30 @@ for episode in range(n_episodes):
         action = black_agent.act(state, valid_moves)
         prev_state = state
         next_state, reward, done, _ = env.step(action)
-        #black_agent.remember(state, action, reward, next_state, done)
         state = next_state
-        
-        #env.current_player = env.current_player * -1 
-
+    
         if done:
-            #white_agent.remember(prev_state, previous_action_white,-reward,next_state,done)
-            #print("black wins!")
-            #print_board(env.previous_board)
-            #print(env.previous_action)
-            #print("black wins! ")
             black_wins += 1
             break
-
         # White's turn
         
         valid_moves = env.valid_moves_mask()
         action = white_agent.act(state, valid_moves)
         prev_state = state
         next_state, reward, done, _ = env.step(action)
-        #white_agent.remember(state, action, reward, next_state, done)  # Negative reward for opponent
         state = next_state
         if (done):
-            #black_agent.remember(prev_state, previous_action_black,-reward,next_state,done)
-            #print("white wins!")
-            #print_board(env.previous_board)
-            #print(env.previous_action)
             white_wins += 1
             break
-        #if (turn_count % 3000 == 0):
-            #env.board.print_board()
-            #print("turn count: ", {turn_count})
         previous_action_black = action
         previous_action_white = action
         
-        # Training
-    #if episode > without_memory:
-        # replay
-        #print("replay")
-        #black_agent.replay(batch_size)
-        #white_agent.replay(batch_size)
-
-    # Update target networks every 10 episodes
-    #if episode % 10 == 0:
-    #    black_agent.update_target_model()
-    #    white_agent.update_target_model()
-    #if episode % 40 == 0:
-    #    white_agent.save_model('white_model_two.keras')
-    #    black_agent.save_model('black_model_two.keras')
+    
     if episode % 100 == 0:
-        # dump all of the information of the training into pickle files
         print(f"white won: {white_wins}, black won: {black_wins}. this is episode: {episode}")
         
-
-
     # Log progress
     if episode % 1 == 0:
         print(f"Episode: {episode}, Total turns: {turn_count}, Epsilon: {black_agent.epsilon}")
-        #print_board()
 
 
