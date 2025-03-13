@@ -212,8 +212,7 @@ for episode in range(n_episodes):
     done = False
     turn_count = 0  # Initialize turn counter for this episode
 
-    previous_action_white = None
-    previous_action_black = None
+    
     while not done:
         turn_count += 1  # Increment counter for each turn
 
@@ -237,9 +236,6 @@ for episode in range(n_episodes):
         if (done):
             white_wins += 1
             break
-        previous_action_black = action
-        previous_action_white = action
-        
     
     if episode % 100 == 0:
         print(f"white won: {white_wins}, black won: {black_wins}. this is episode: {episode}")
