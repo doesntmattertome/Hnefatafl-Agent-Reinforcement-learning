@@ -118,14 +118,6 @@ class DQNAgent:
         self.model.load_weights(filename)
 
 
-    def save_model(self, filename):
-        self.model.save(filename)
-
-    def load_model(self, filename):
-        custom_objects = {'<lambda>': lambda a: a[0] + a[1] - tf.reduce_mean(a[1], axis=1, keepdims=True)}
-        self.model = tf.keras.models.load_model(filename,safe_mode=False,custom_objects=custom_objects)
-        self.target_model = tf.keras.models.load_model(filename,safe_mode=False,custom_objects=custom_objects)
-
     def _build_model(self):
       inputs = Input(shape=(11, 11, 1))
       x = Conv2D(256, (5, 5), activation='relu', padding='same')(inputs)

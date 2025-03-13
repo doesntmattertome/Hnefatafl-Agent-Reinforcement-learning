@@ -14,7 +14,6 @@ from game import Board
 
 import random
 import numpy as np
-from collections import deque
 import tensorflow as tf
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Input, Flatten, Conv2D, Lambda
