@@ -271,17 +271,8 @@ for episode in range(n_episodes):
         previous_action_black = action
         prev_state = state
         next_state, reward, done, _ = env.step(action)
-        #reward_black = reward
-        #black_agent.remember(state, action, reward, next_state, done)
-        #state = next_state
 
         if done:
-            #current_reward += reward
-            #black_agent.remember(state, action, reward, next_state, done)
-            #white_agent.remember(prev_state, previous_action_white, -reward, next_state, done)
-            #print("black wins!")
-            #print_board(env.previous_board)
-            #print(env.previous_action)
             amount_black += 1
             wins = "black"
             break
@@ -290,43 +281,16 @@ for episode in range(n_episodes):
         action = white_agent.act(state, valid_moves)
         prev_state = state
         next_state, reward, done, _ = env.step(action)
-        #white_agent.remember(state, action, reward, next_state, done)
         state = next_state
+        
         if done:
-            #current_reward += -(reward/6)
-            #black_agent.remember(prev_state, previous_action_black,-(reward/6) , next_state, done)
-            #print("white wins!")
-            #print_board(env.previous_board)
-            #print(env.previous_action)
             wins = "white"
             amount_white += 1
             break
-        #else:
-            #current_reward += reward_black
-            #black_agent.remember(prev_state, previous_action_black, reward_black, next_state, done)
+        
         if (turn_count % 3000 == 0):
             env.board.print_board()
             print("turn count: ", {turn_count})
-
-
-    #if episode > without_memory:
-    #    print("replay")
-     #   black_agent.replay(batch_size)
-        #white_agent.replay(batch_size)
-
-    #if episode % 10 == 0:
-    #    black_agent.update_target_model()
-        #white_agent.update_target_model()
-    #if episode % 40 == 0:
-    #    #white_agent.save_model('white_model_two.keras')
-     #   black_agent.save_model('black_model_two.keras')
-    #if episode % 100 == 0:
-    #    with open('black_agent_two.pickle', 'wb') as handle:
-    #        pickle.dump(black_agent, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        #with open('white_agent_two.pickle', 'wb') as handle:
-        #    pickle.dump(white_agent, handle, protocol=pickle.HIGHEST_PROTOCOL)
-    #    with open('reward_history_black.pickle', 'wb') as handle:
-    #        pickle.dump(reward_history, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     if episode % 1 == 0:
         print(f"Episode: {episode}, Total turns: {turn_count}, won: {wins}")
