@@ -249,6 +249,7 @@ action_size = 11 * 11 * 11 * 11
 
 black_agent = DQNAgent(state_size, action_size, 1)
 black_agent.load_weights("black_model.weights.h5")
+black_agent.model.summary()
 white_agent = DQNAgent(state_size, action_size, -1)
 
 batch_size = 256

@@ -138,10 +138,6 @@ class DQNAgent:
       value = Dense(256, activation='relu')(value)
       value = Dense(1)(value)
 
-      # Add residual connections (skip connections) to both streams
-      advantage_residual = Add()([advantage, Dense(self.action_size)(x)])
-      value_residual = Add()([value, Dense(1)(x)])
-
       # Combine value and advantage
       # Provide an explicit output_shape
       q_values = Lambda(lambda a: a[0] + a[1] - tf.reduce_mean(a[1], axis=1, keepdims=True),output_shape=(self.action_size,)  # Explicitly specify the output shape

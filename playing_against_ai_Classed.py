@@ -9,7 +9,6 @@ import time
 # UML Diagram for Hnefatafl Game
 
 
-
 class HnefataflGUI:
     def __init__(self):
         # Initialize Pygame and constants
@@ -52,6 +51,7 @@ class HnefataflGUI:
         action_size = 11 * 11 * 11 * 11
         self.dqn_agent_black = DQNAgent(state_size, action_size, player=1)
         self.dqn_agent_black.load_weights("black_model.weights.h5")
+        self.dqn_agent_black.model.summary()
         # self.dqn_agent_black.print_weights()
         # self.dqn_agent_black.model_summary()
 
